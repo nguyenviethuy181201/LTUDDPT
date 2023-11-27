@@ -48,7 +48,7 @@ if num_movies > 0:
    	    print(f"Đã xóa file {filename} sau khi chuyển đổi thành công!")
    	 
    	    new_video = f"http://192.168.1.166/hls/{movie_id}/{movie_id}.m3u8"
-   	    movie_collection.update_one({}, {'$set': {'video': new_video}})
+   	    movie_collection.update_one({'_id': movie_id}, {'$set': {'video': new_video}})
    	    print(f"Cập nhật thành công URL mới cho phim {movie_id}!")
 else:
     print("Không có phim nào cần cập nhật url")
