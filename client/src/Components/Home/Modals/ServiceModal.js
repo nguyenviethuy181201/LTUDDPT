@@ -20,10 +20,7 @@ const ServiceModal = ({filmCode, user, modalOpen, setModalOpen}) => {
     // } = useSelector (
     //     (state) => state.getAllServices
     // );
-    const submitHandler = (e) => {
-        dispatch(memberRegister({amount: 10000, filmCode : filmCode + '_' + user,})) 
-      };
-
+    
     //   dispatch(getAllServicesAction())
 
 
@@ -61,7 +58,7 @@ const ServiceModal = ({filmCode, user, modalOpen, setModalOpen}) => {
                                     </div>
                                     
                                 </div>
-                                <button onClick={() => {dispatch(memberRegister({amount: service.price, filmCode : filmCode + '_' + user,})) }} className='mt-[30px] border rounded-3xl py-2 px-6 text-lg   transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300'>
+                                <button onClick={() => {setModalOpen(false); {dispatch(memberRegister({amount: service.price, info : filmCode + '_' + user + '_' + service.package})) }}} className='mt-[30px] border rounded-3xl py-2 px-6 text-lg   transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300'>
                                     Đăng ký ngay
                                 </button>
                             </div>

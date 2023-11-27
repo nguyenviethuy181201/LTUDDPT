@@ -1,8 +1,8 @@
 import Axios from "./Axios";
 
-const registerMemberService =  async ( amount,filmCode,  token) => {
+const registerMemberService =  async ( amount,info,  token) => {
   
-    const { data } = await Axios.post('/vnpay/member', {amount, filmCode}, {
+    const { data } = await Axios.post('/vnpay/member', {amount, info}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

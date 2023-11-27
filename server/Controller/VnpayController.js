@@ -35,7 +35,7 @@ const registerMember = asyncHandler(async(req, res) => {
     vnp_Params['vnp_Locale'] = locale;
     vnp_Params['vnp_CurrCode'] = currCode;
     vnp_Params['vnp_TxnRef'] = orderId;
-    vnp_Params['vnp_OrderInfo'] = req.body.filmCode;
+    vnp_Params['vnp_OrderInfo'] = req.body.info;
     vnp_Params['vnp_OrderType'] = 'other';
     vnp_Params['vnp_Amount'] = amount * 100;
     vnp_Params['vnp_ReturnUrl'] = returnUrl;
@@ -60,8 +60,8 @@ const returnWebsite = asyncHandler(async(req,res ) => {
     let vnp_Params = req.query;
     let statusGD = vnp_Params['vnp_ResponseCode'];
     
-    let filmCode_user = vnp_Params['vnp_OrderInfo'];
-    let [filmCode, userId] = filmCode_user.split("_")
+    let filmCode_user_resPackage = vnp_Params['vnp_OrderInfo'];
+    let [filmCode, userId, resPackage] = filmCode_user_resPackage.split("_")
     let date = moment(vnp_Params['vnp_PayDate'], 'YYYYMMDDHHmmss');
     
     if(statusGD == "00"){
@@ -69,6 +69,7 @@ const returnWebsite = asyncHandler(async(req,res ) => {
       if(user){
         user.isMember = true;
         user.registerDate = date.toDate();
+        user.registerPackage = resPackage;
         await user.save();
       }
       res.redirect(`http://localhost:3000/watch/${filmCode}`)
@@ -76,6 +77,7 @@ const returnWebsite = asyncHandler(async(req,res ) => {
       res.redirect(`http://localhost:3000/movie/${filmCode}`)
     }
 });
+
 
 
 const sortObject = (obj) => {

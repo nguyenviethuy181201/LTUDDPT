@@ -31,6 +31,9 @@ const UserSchema = mongoose.Schema(
     registerDate: {
       type: Date,
     },
+    registerPackage:{
+      type: Number,
+    },
     likedMovies: [
       {
         type: mongoose.Schema.Types.ObjectId,
