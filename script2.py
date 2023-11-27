@@ -23,7 +23,7 @@ myquery = { "isMember": True }
 users = users_collection.find(myquery)
 
 num_users = users_collection.count_documents(myquery)
-if num_user > 0:
+if num_users > 0:
 	for user in users:
 		distance = (now - user['registerDate'].replace(tzinfo=timezone.utc)).days
 		if(distance + 1 > user['registerPackage']):
